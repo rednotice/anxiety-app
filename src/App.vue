@@ -1,36 +1,43 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
+  <v-app id="anxiety">
 
-    <v-content>
-      <HelloWorld/>
+    <app-navbar></app-navbar>
+
+    <v-content class="background darken-3 white--text">
+      <v-container>
+        <router-view></router-view>
+      </v-container>
     </v-content>
+
+    <app-bottom-navigation v-if="loggedIn"></app-bottom-navigation>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Navbar from '@/components/Navbar.vue'
+import BottomNavigation from '@/components/BottomNavigation.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
+  props: {
+    source: String,
   },
-  data: () => ({
-    //
-  }),
-};
+  components: {
+    'appNavbar': Navbar,
+    'appBottomNavigation': BottomNavigation
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+  },
+  watch: {
+    '$route' (to, from) {
+      document.title = to.meta.title + ' | AnxietyApp' || 'AnxietyApp'
+    }
+  },
+}
 </script>
+
+<style scoped>
+</style>
