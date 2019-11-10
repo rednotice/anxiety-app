@@ -2,6 +2,8 @@ export const getInitialState = () => {
     return {
         accessToken: null,
         user: {},
-        challenge: ''
+        challenge: '',
+        oldRewardPoints: null,
+        errors: {}
     }
 }

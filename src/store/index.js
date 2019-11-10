@@ -11,7 +11,8 @@ export default new Vuex.Store({
     accessToken: null,
     user: {},
     challenge: '',
-    oldRewardPoints: null
+    oldRewardPoints: null,
+    errors: {}
   },
   getters: {
     loggedIn(state) {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     setOldRewardPoints(state, oldRewardPoints) {
       state.oldRewardPoints = oldRewardPoints;
+    },
+    setErrors(state, errors) {
+      state.errors = errors;
     },
     resetState(state) {
       Object.assign(state, getInitialState());

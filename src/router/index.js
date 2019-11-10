@@ -107,6 +107,7 @@ const router = new VueRouter({
 
 // Navigation Guard
 router.beforeEach((to, from, next) => {
+  store.commit('setErrors', {});
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.loggedIn) {
       next({

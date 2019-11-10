@@ -8,6 +8,19 @@ import axios from 'axios'
 
 // Axios
 axios.defaults.baseURL = 'http://localhost:3000/';
+
+axios.interceptors.response.use(function (response) {
+  // Clear errors in store
+  store.commit('setErrors', {});
+  // Do something with response data
+  return response;
+}, function (error) {
+  // Do something with response error
+  console.log(error.response);
+  store.commit('setErrors', error.response.data);
+  return Promise.reject(error);
+});
+
 Vue.prototype.$axios = axios;
 
 // Global error handler

@@ -3,26 +3,29 @@
       <v-row justify="center">
         <v-col cols="12" sm="6">
           <h2 class="mb-4">Sign In</h2>
-          <v-form ref="form" v-model="valid" :lazy-validation="lazy" cols="12" sm="6">
+          <v-form ref="form" v-model="valid" lazy-validation cols="12" sm="6">
             <v-text-field
                 v-model="email"
                 :rules="emailRules"
+                :error-messages="errors.email"
                 label="E-mail"
+                validate-on-blur
                 required
               ></v-text-field>
               <v-text-field
                 v-model="password"
                 :rules="passwordRules"
+                :error-messages="errors.password"
                 :type="hidePassword? 'password' : 'text'"
                 :append-icon="hidePassword ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
                 @click:append="hidePassword = !hidePassword"
                 label="Password"
+                validate-on-blur
                 required
               ></v-text-field>
 
               <div class="d-flex justify-center">
                 <v-btn
-                  :disabled="!valid"
                   color="secondary"
                   outlined
                   @click="validate"
@@ -37,12 +40,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'signin',
   data: () => ({
     valid: true,
-    lazy: true,
     email: '',
     password: '',
     emailRules: [
@@ -54,6 +57,11 @@ export default {
     ],
     hidePassword: true
   }),
+  computed: {
+    ...mapState([
+      'errors'
+    ])
+  },
   methods: {
     async validate() {
       if (this.$refs.form.validate()) {
