@@ -7,7 +7,7 @@
                     <p class="headline">Your new score is:</p>
                     <p class="display-2">{{counter}}</p>
                     <p class="display-1 text-center">You are on your way to be fearless!</p>
-                    <v-btn outlined color="primary" class="mt-2" to='/challenge'>Next Challenge</v-btn>
+                    <v-btn class="mt-2" dark tile outlined to='/challenge'>Next Challenge</v-btn>
                 </div>
             </v-col>
         </v-row>

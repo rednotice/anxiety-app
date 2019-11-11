@@ -1,5 +1,5 @@
 <template>
-    <v-bottom-navigation app light color="primary">
+    <v-bottom-navigation app grow dark background-color="base">
       <v-btn :to="'/profile'">Profile</v-btn>
       <v-btn :to="'/challenge'">Challenge</v-btn>
       <v-btn>Bonus</v-btn>

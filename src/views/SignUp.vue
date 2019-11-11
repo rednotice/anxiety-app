@@ -34,7 +34,8 @@
 
               <div class="d-flex justify-center">
                 <v-btn
-                  color="secondary"
+                  color="white"
+                  tile
                   outlined
                   @click="validate"
                 >

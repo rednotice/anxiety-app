@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <v-navigation-drawer v-model="drawer" app color="primary">
+        <v-navigation-drawer v-model="drawer" app color="base">
             <div class="py-4 pl-4 d-flex justify-space-between">
                 <h2>AnXiety</h2>
                 <v-btn v-if="loggedIn" text :to="'/logout'">
@@ -40,17 +40,26 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app color="primary">
+        <v-app-bar app dense color="base">
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
-            <v-toolbar-title class="font-weight-bold headline">
+            <v-toolbar-title class="headline">
                 <span>{{title}}</span>
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
 
-            <v-toolbar-title v-if="loggedIn" class="font-weight-bold headline">
-                <span>Score: {{rewardPoints}}</span>
+            <v-toolbar-title v-if="loggedIn" class="headline">
+                    <v-chip
+                        class="ma-2"
+                        color="primary"
+                        text-color="white"
+                    >
+                        <v-avatar left>
+                            <v-icon small>mdi-trophy</v-icon>
+                        </v-avatar>
+                        {{rewardPoints}}
+                    </v-chip>
             </v-toolbar-title>
         </v-app-bar>
     </nav>

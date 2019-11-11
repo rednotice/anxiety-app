@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import Logout from '../views/Logout.vue'
+import Error from '../views/Error.vue'
 import Challenge from '../views/Challenge.vue'
 import ChallengeAccomplished from '../views/ChallengeAccomplished.vue'
 import Profile from '../views/Profile.vue'
@@ -50,6 +51,15 @@ const routes = [
     meta: {
       requiresGuest: true,
       title: 'Log Out'
+    }
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: Error,
+    meta: {
+      requiresGuest: true,
+      title: 'Error'
     }
   },
   {
@@ -107,7 +117,19 @@ const router = new VueRouter({
 
 // Navigation Guard
 router.beforeEach((to, from, next) => {
-  store.commit('setErrors', {});
+  store.commit('setErrors', {}); // Clear errors in store
+
+  // Cookie extractor
+  function getCookie(name) {
+    const re = new RegExp(name + "=([^;]+)");
+    const value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+  }
+
+  // Retrieve token from cookie and save to store
+  const token = getCookie('access-token');
+  store.commit('setAccessToken', token);
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.loggedIn) {
       next({

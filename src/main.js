@@ -26,7 +26,7 @@ Vue.prototype.$axios = axios;
 // Global error handler
 Vue.config.errorHandler = (err, vm, info) => {
   console.error(`${err}\nInfo: ${info}\nComponent: ${vm}`);
-  return;
+  router.push('/error')
 }
 
 Vue.config.productionTip = false;

@@ -2,7 +2,7 @@
   <div class="profile-edit">
     <v-row justify="center">
       <v-col cols="12" sm="6">
-        <h2 class="mb-4">Edit Profile</h2>
+        <h2 class="mb-4 d-none d-md-block">Edit Profile</h2>
         <v-form ref="form" v-model="valid" lazy-validation cols="12" sm="6">
           <v-text-field
             v-model="user.name"
@@ -20,9 +20,10 @@
             validate-on-blur
             required
           ></v-text-field>
-          <div class="d-flex justify-center">
+          <div class="mt-4 d-flex justify-center">
             <v-btn
-              color="secondary"
+              color="white"
+              tile
               outlined
               @click="validate"
             >
@@ -30,6 +31,15 @@
             </v-btn>
           </div>
         </v-form>
+
+        <!-- <v-btn 
+          color="error"
+          outlined
+          class="mt-4"
+          @click="deleteAccount"
+        >
+          Delete Account
+        </v-btn> -->
       </v-col>
     </v-row>
   </div>
@@ -66,6 +76,9 @@ export default {
           email: this.user.email
         })
       }
+    },
+    deleteAccount() {
+      this.$store.dispatch('deleteAccount');
     }
   }
 }

@@ -3,7 +3,7 @@
 
     <app-navbar></app-navbar>
 
-    <v-content class="background darken-3 white--text">
+    <v-content class="base darken-3 white--text" style="height:100vh;">
       <v-container>
         <router-view></router-view>
       </v-container>
